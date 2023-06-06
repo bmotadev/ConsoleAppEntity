@@ -42,7 +42,7 @@ namespace ConsoleAppEntity
         {
             modelBuilder.Entity<Email>()
                 .HasOne(e => e.pessoa)
-                .WithMany(e => e.Emails)
+                .WithMany(e => e.emails)
                 .OnDelete(DeleteBehavior.ClientCascade);
         }
     }

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConsoleAppEntity.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20230606183619_Initial")]
+    [Migration("20230606202426_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -69,7 +69,7 @@ namespace ConsoleAppEntity.Migrations
             modelBuilder.Entity("ConsoleAppEntity.DataModels.Email", b =>
                 {
                     b.HasOne("ConsoleAppEntity.DataModels.Pessoa", "pessoa")
-                        .WithMany("Emails")
+                        .WithMany("emails")
                         .HasForeignKey("pessoaid")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
@@ -79,7 +79,7 @@ namespace ConsoleAppEntity.Migrations
 
             modelBuilder.Entity("ConsoleAppEntity.DataModels.Pessoa", b =>
                 {
-                    b.Navigation("Emails");
+                    b.Navigation("emails");
                 });
 #pragma warning restore 612, 618
         }

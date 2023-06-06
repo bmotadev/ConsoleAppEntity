@@ -66,7 +66,7 @@ namespace ConsoleAppEntity.Migrations
             modelBuilder.Entity("ConsoleAppEntity.DataModels.Email", b =>
                 {
                     b.HasOne("ConsoleAppEntity.DataModels.Pessoa", "pessoa")
-                        .WithMany("Emails")
+                        .WithMany("emails")
                         .HasForeignKey("pessoaid")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
@@ -76,7 +76,7 @@ namespace ConsoleAppEntity.Migrations
 
             modelBuilder.Entity("ConsoleAppEntity.DataModels.Pessoa", b =>
                 {
-                    b.Navigation("Emails");
+                    b.Navigation("emails");
                 });
 #pragma warning restore 612, 618
         }
