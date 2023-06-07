@@ -155,13 +155,36 @@ namespace ConsoleAppEntity
 
                         foreach (Pessoa item in pessoas)
                         {
-                            Console.WriteLine(item.nome);
+                            Console.WriteLine(item.id + item.nome);
 
                             foreach (Email itemE in item.emails)
                             {
                                 Console.WriteLine("\t" + itemE.email);
                             }
                             Console.WriteLine();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    break;
+
+                case 6:
+                    try
+                    {
+                        Console.WriteLine("Infomre o ID da pessoa");
+                        int idP = int.Parse(Console.ReadLine());
+
+                        //Pessoa pessoa = contexto.Pessoas.Include(p => p.emails).Where(p => p.id == id).FirstOrDefault();
+
+                        Pessoa pessoa = contexto.Pessoas.Include(p => p.emails).FirstOrDefault(x => x.id == idP);
+
+                        Console.WriteLine(pessoa.id + " - " + pessoa.nome);
+
+                        foreach (Email item in pessoa.emails)
+                        {
+                            Console.WriteLine("\t" + item.email);
                         }
                     }
                     catch (Exception ex)
