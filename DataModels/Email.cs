@@ -10,6 +10,6 @@ namespace ConsoleAppEntity.DataModels
     {
         public int id { get; set; }
         public string email { get; set; }
-        public virtual Pessoa pessoa { get; set; }
+        public virtual Pessoa pessoa { get; set; } //chave estrangeira
     }
 }

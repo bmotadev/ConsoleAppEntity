@@ -1,4 +1,6 @@
 ﻿using ConsoleAppEntity.DataModels;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
 using System.Threading.Channels;
 
 namespace ConsoleAppEntity
@@ -137,6 +139,30 @@ namespace ConsoleAppEntity
                             Console.WriteLine("Excluido com sucesso!");
                         }
 
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    break;
+
+                case 5:
+                    try
+                    {
+                        // vai juntar pessoas e emails. E criar uma lista com nome de Pessoa.
+                        List<Pessoa> pessoas = (from Pessoa p in contexto.Pessoas select p).Include(pes => pes.emails).ToList<Pessoa>();
+
+
+                        foreach (Pessoa item in pessoas)
+                        {
+                            Console.WriteLine(item.nome);
+
+                            foreach (Email itemE in item.emails)
+                            {
+                                Console.WriteLine("\t" + itemE.email);
+                            }
+                            Console.WriteLine();
+                        }
                     }
                     catch (Exception ex)
                     {
