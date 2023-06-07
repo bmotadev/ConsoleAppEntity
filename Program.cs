@@ -55,7 +55,16 @@ namespace ConsoleAppEntity
                 case 2:
                     try
                     {
+                        Console.WriteLine("Informe o ID da pessoa:");
+                        int idPessoa = int.Parse(Console.ReadLine());
 
+                        Pessoa? pAlt = contexto.Pessoas.Find(idPessoa);
+
+                        Console.WriteLine("Informe o nome correto:");
+                        pAlt.nome = Console.ReadLine();
+
+                        contexto.Pessoas.Update(pAlt);
+                        contexto.SaveChanges();
                     }
                     catch (Exception ex)
                     {
