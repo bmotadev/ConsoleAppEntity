@@ -1,4 +1,5 @@
 ﻿using ConsoleAppEntity.DataModels;
+using System.Threading.Channels;
 
 namespace ConsoleAppEntity
 {
@@ -6,7 +7,14 @@ namespace ConsoleAppEntity
     {
         static void Main(string[] args)
         {
-            Console.WriteLine($"Digite: \n 1 para criar uma pessoa\n 2 para alterar o nome da pessoa\n");
+            Console.WriteLine("Digite:\n" +
+                "1 para criar uma pessoa\n" +
+                "2 para alterar o nome da pessoa\n" +
+                "3 para inserir um email\n" +
+                "4 para excluir uma pessoa\n" +
+                "5 para consultar TUDO\n" +
+                "6 para consultar pelo ID"
+                );
 
 
             int op = int.Parse(Console.ReadLine());
@@ -65,6 +73,8 @@ namespace ConsoleAppEntity
 
                         contexto.Pessoas.Update(pAlt);
                         contexto.SaveChanges();
+
+                        Console.WriteLine("Nome alterado com sucesso!");
                     }
                     catch (Exception ex)
                     {
@@ -75,6 +85,27 @@ namespace ConsoleAppEntity
                 case 3:
                     try
                     {
+                        Console.WriteLine("Informe o ID da pessoa:");
+                        int id = int.Parse(Console.ReadLine());
+
+                        Pessoa? p = contexto.Pessoas.Find(id);
+
+                        Console.WriteLine("Informe o novo email:");
+                        string emailTemp = Console.ReadLine();
+
+                        Email e = new Email();
+                        e.email = Console.ReadLine();
+                        p.emails.Add(e);
+
+                        //p.emails.Add(new Email() 
+                        //{ 
+                        //    email = emailTemp
+                        //});
+
+                        contexto.Pessoas.Update(p);
+                        contexto.SaveChanges();
+
+                        Console.WriteLine("Email inserido com sucesso!");
 
                     }
                     catch (Exception ex)
