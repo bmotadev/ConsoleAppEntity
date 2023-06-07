@@ -114,6 +114,36 @@ namespace ConsoleAppEntity
                     }
                     break;
 
+                case 4:
+                    try
+                    {
+                        Console.WriteLine("Informe o ID para exclusão");
+                        int id = int.Parse(Console.ReadLine());
+                        Pessoa p = contexto.Pessoas.Find(id);
+
+                        Console.WriteLine("Confirmar a exclusão de " + p.nome);
+                        Console.WriteLine("E dos seus emails?");
+
+                        foreach (Email item in p.emails)
+                        {
+                            Console.WriteLine("\t" + item.email);
+                        }
+
+                        Console.WriteLine("1 para sim e 2 para não");
+                        if(int.Parse(Console.ReadLine()) == 1) 
+                        {
+                            contexto.Pessoas.Remove(p);
+                            contexto.SaveChanges();
+                            Console.WriteLine("Excluido com sucesso!");
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    break;
+
                 default:
                     break;
             }
